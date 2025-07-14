@@ -1,6 +1,70 @@
 [project]
 name = "escrow-freelance-contract"
+version = "2.0.0"
+description = "Enhanced escrow contract system for freelance work with reputation management"
+authors = ["midorichie <midorichie@example.com>"]
+keywords = ["escrow", "freelance", "smart-contract", "reputation"]
+license = "MIT"
 
-[[contracts]]
-name = "escrow"
+[contracts.escrow]
 path = "contracts/escrow.clar"
+clarity_version = 2
+epoch = 2.4
+
+[contracts.reputation]
+path = "contracts/reputation.clar"
+clarity_version = 2
+epoch = 2.4
+
+[repl]
+costs = true
+parser_version = 2
+
+[repl.analysis]
+passes = ["check_checker"]
+
+[devnet]
+disable_stacks_explorer = false
+disable_stacks_api = false
+# Enable mining and set mining interval
+mine_microblocks = true
+microblock_time = 1000
+
+# Network settings
+bind_address = "127.0.0.1"
+port = 20443
+
+# Database path
+working_dir = ".devnet"
+
+# Accounts for testing
+[[devnet.accounts]]
+name = "deployer"
+balance = 100000000000000
+address = "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM"
+mnemonic = "fetch outside black test wash cover just actual execute nice door want airport betray quantum stamp fish act pen trust portion fatigue scissors vague"
+
+[[devnet.accounts]]
+name = "wallet_1"
+balance = 100000000000000
+address = "ST1SJ3DTE5DN7X54YDH5D64R3BCB6A2AG2ZQ8YPD5"
+mnemonic = "need abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art"
+
+[[devnet.accounts]]
+name = "wallet_2"
+balance = 100000000000000
+address = "ST2CY5V39NHDPWSXMW9QDT3HC3GD6Q6XX4CFRK9AG"
+mnemonic = "want abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon abandon art"
+
+# Contract deployment settings
+[[devnet.contracts]]
+name = "escrow"
+deployer = "deployer"
+
+[[devnet.contracts]]
+name = "reputation"
+deployer = "deployer"
+
+[testing]
+test_runner = "clarinet test"
+coverage = true
