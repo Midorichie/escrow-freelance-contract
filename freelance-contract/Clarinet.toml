@@ -1,0 +1,6 @@
+[project]
+name = "escrow-freelance-contract"
+
+[[contracts]]
+name = "escrow"
+path = "contracts/escrow.clar"

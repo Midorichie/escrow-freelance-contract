@@ -1,0 +1,10 @@
+(define-constant err-not-client (err u100))
+(define-constant err-not-freelancer (err u101))
+(define-constant err-not-funded (err u102))
+(define-constant err-already-released (err u103))
+
+(define-data-var client principal tx-sender)
+(define-data-var freelancer principal 'SP000000000000000000002Q6VF78)
+(define-data-var amount uint u0)
+(define-data-var funded bool false)
+(define-data-var released bool false)
